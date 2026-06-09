@@ -37,12 +37,10 @@ const normalizeRegionName = (name: string) => {
 };
 
 const WILAYAH_INFO: Record<string, { pusat: string; desc: string }> = {
-  'wilayah i': { pusat: 'Padang', desc: 'Seluruh provinsi di Pulau Sumatera' },
-  'wilayah ii': { pusat: 'Bandung', desc: 'DKI Jakarta, Banten, dan Jawa Barat' },
-  'wilayah iii': { pusat: 'Yogyakarta', desc: 'Jawa Tengah, DIY, Jawa Timur, Bali, NTB, dan NTT' },
-  'wilayah iv': { pusat: 'Banjarbaru', desc: 'Seluruh provinsi di Pulau Kalimantan' },
-  'wilayah v': { pusat: 'Makassar', desc: 'Seluruh provinsi di Pulau Sulawesi' },
-  'wilayah vi': { pusat: 'Jayapura', desc: 'Kepulauan Maluku dan Pulau Papua' },
+  'wilayah i': { pusat: 'Regional I', desc: 'Sumatera (Aceh, Sumut, Sumbar, Riau, Kepri, Jambi, Bengkulu, Lampung) dan sekitarnya.' },
+  'wilayah ii': { pusat: 'Regional II', desc: 'Jawa, Bali, dan Nusa Tenggara Barat.' },
+  'wilayah iii': { pusat: 'Regional III', desc: 'Kalimantan dan Sulawesi.' },
+  'wilayah iv': { pusat: 'Regional IV', desc: 'Maluku, NTT, dan Papua.' },
 };
 
 const WILAYAH_COLORS: Record<string, { fill: string; border: string }> = {
@@ -50,8 +48,6 @@ const WILAYAH_COLORS: Record<string, { fill: string; border: string }> = {
   'wilayah ii': { fill: '#10b981', border: '#6ee7b7' },
   'wilayah iii': { fill: '#f59e0b', border: '#fcd34d' },
   'wilayah iv': { fill: '#8b5cf6', border: '#c4b5fd' },
-  'wilayah v': { fill: '#ec4899', border: '#f9a8d4' },
-  'wilayah vi': { fill: '#06b6d4', border: '#67e8f9' },
 };
 
 const DEFAULT_WILAYAH_COLOR = { fill: '#10b981', border: '#6ee7b7' };
