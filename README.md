@@ -1,73 +1,73 @@
-# React + TypeScript + Vite
+# SSCASN Sekolah Rakyat 2026
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Visualisasi Data Eksplorasi CASN 2026 - Alternatif PPPK Guru & Teknis Sekolah Rakyat. 
+Aplikasi ini dibangun menggunakan **React**, **TypeScript**, dan **Vite** untuk menampilkan persebaran formasi PPPK dalam bentuk tabel statistik dan peta interaktif.
 
-Currently, two official plugins are available:
+## Prasyarat (Prerequisites)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Pastikan Anda sudah menginstal perangkat lunak berikut di sistem Anda:
+- [Node.js](https://nodejs.org/) (disarankan versi 18 LTS ke atas)
+- Git (Opsional, untuk clone repository)
 
-## React Compiler
+## 🚀 Tutorial Instalasi Pertama Kali
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Ikuti langkah-langkah di bawah ini untuk menginstal dan menjalankan proyek secara lokal:
 
-## Expanding the ESLint configuration
+1. **Clone Repository (Jika belum)**
+   Buka terminal, lalu jalankan perintah berikut untuk mengunduh kode sumber proyek:
+   ```bash
+   git clone https://github.com/ryuuken03/casn-formasi-pppk-sekolah-rakyat-2026.git
+   cd "casn-formasi-pppk-sekolah-rakyat-2026"
+   ```
+   *(Atau Anda bisa mengunduh file ZIP dari repository dan mengekstraknya, lalu buka folder tersebut di terminal).*
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. **Instalasi Dependensi**
+   Instal semua paket dan library yang dibutuhkan menggunakan NPM:
+   ```bash
+   npm install
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Cara Menjalankan Aplikasi (Development Mode)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Untuk menjalankan proyek pada mode pengembangan (*development mode*):
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Setelah perintah berhasil dijalankan, buka browser Anda dan akses: **http://localhost:5173/**. 
+Setiap kali Anda mengubah kode sumber, halaman akan dimuat ulang secara otomatis (HMR).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📦 Cara Build & Run (Production Mode)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Jika Anda ingin melihat versi optimasi aplikasi seperti yang akan dijalankan di server publik (*production*):
+
+1. **Build Proyek**
+   Jalankan perintah build. Vite akan memproses semua *asset* dan mengompilasi TypeScript:
+   ```bash
+   npm run build
+   ```
+   *Hasil kompilasi akan tersimpan di dalam folder `dist/`.*
+
+2. **Preview Hasil Build**
+   Untuk meninjau langsung hasil kompilasi *production* tersebut secara lokal:
+   ```bash
+   npm run preview
+   ```
+   Aplikasi siap tayang sekarang bisa diakses melalui URL *localhost* yang tampil di terminal (biasanya **http://localhost:4173/**).
+
+## 🌐 Deployment (Vercel)
+
+Proyek ini menggunakan standar Vite sehingga sangat mudah di-*deploy* (misalnya menggunakan Vercel):
+1. Hubungkan *repository* GitHub proyek ini ke akun [Vercel](https://vercel.com/) Anda.
+2. Vercel akan secara otomatis mengenali aplikasi ini sebagai *Vite project*.
+3. Pengaturan *Build Command* (`npm run build`) dan *Output Directory* (`dist`) akan diisi secara otomatis.
+4. Klik **Deploy** dan aplikasi Anda akan *live*!
+
+---
+
+### Teknologi Utama yang Digunakan
+- **Vite** - *Build tool* generasi baru yang sangat cepat
+- **React 19 + TypeScript** - Pembuatan antarmuka pengguna dengan *type-safety*
+- **React Leaflet** - Menampilkan peta interaktif (geospasial)
+- **Vanilla CSS** - *Styling* khusus dengan *Modern CSS Variables* dan Tema Dinamis (Gelap/Terang)

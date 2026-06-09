@@ -5,7 +5,6 @@ import L from 'leaflet';
 import type { GeoJsonObject } from 'geojson';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import { useTheme } from '../../hooks/useTheme';
 import { JAKARTA_CITIES } from '../../types';
 
 const DefaultIcon = L.icon({
