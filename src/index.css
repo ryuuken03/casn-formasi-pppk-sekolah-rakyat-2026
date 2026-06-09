@@ -682,7 +682,7 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 1rem;
   box-shadow: var(--shadow-card);
   animation: fadeIn 0.5s ease-out;
   transition: background 0.3s ease, border-color 0.3s ease;
@@ -812,9 +812,20 @@ body {
 }
 
 @keyframes bounceIn {
-  0% { transform: scale(0); opacity: 0; }
-  80% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  80% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .custom-tooltip {
@@ -1038,6 +1049,7 @@ body {
   .mobile-filter-btn {
     display: flex;
   }
+
   .filter-section:not(.show) {
     display: none !important;
   }
@@ -1053,10 +1065,12 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
 .total-kebutuhan-card .tk-label {
   color: var(--text-primary);
   font-weight: 500;
 }
+
 .total-kebutuhan-card .tk-value {
   color: var(--text-accent);
   font-size: 1.25rem;
@@ -1071,6 +1085,7 @@ body {
     gap: 0;
     padding: 0.75rem 1rem;
   }
+
   .total-kebutuhan-card .tk-value {
     font-size: 1.1rem;
   }
@@ -1085,7 +1100,7 @@ body {
   .desktop-table-wrapper {
     display: none;
   }
-  
+
   .mobile-cards-wrapper {
     display: flex;
     flex-direction: column;
@@ -1097,7 +1112,7 @@ body {
     align-items: stretch;
   }
 
-  .table-header-controls > .toggle-group {
+  .table-header-controls>.toggle-group {
     width: 100%;
   }
 
