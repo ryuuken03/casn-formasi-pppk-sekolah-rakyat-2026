@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -136,6 +136,11 @@ const MapVisualizer: React.FC<MapVisualizerProps> = ({ statsData, theme, onRegio
   const [geoData, setGeoData] = useState<GeoJsonObject | null>(null);
   const [wilayahGeoData, setWilayahGeoData] = useState<GeoJsonObject | null>(null);
   const [loadingError, setLoadingError] = useState(false);
+  const lastTappedRegion = useRef<string | null>(null);
+
+  const isTouchDevice = useMemo(() => {
+    return typeof window !== 'undefined' && window.matchMedia("(pointer: coarse)").matches;
+  }, []);
 
   useEffect(() => {
     const loadKabData = async () => {
@@ -257,12 +262,14 @@ const MapVisualizer: React.FC<MapVisualizerProps> = ({ statsData, theme, onRegio
       const info = WILAYAH_INFO[wilId] || { pusat: '', desc: '' };
       const displayTitle = `Pusat Pendidikan, Pelatihan dan Pengembangan Profesi Kesejahteraan Sosial | ${wilId.toUpperCase()}`;
       
+      const tapHint = isTouchDevice ? `<br/><span style="font-size:0.75rem; color:#94a3b8; display:block; margin-top:4px;">(Tap 2x untuk rincian)</span>` : '';
+      
       layer.bindTooltip(`
         <strong>${displayTitle} (Pusat: ${info.pusat})</strong>
         <div style="font-size:0.8rem; color:#94a3b8; margin:6px 0 8px 0; max-width:280px; white-space:normal; line-height:1.4;">
           Melayani: ${info.desc}
         </div>
-        <div>Kebutuhan: <strong>${wValue} Orang</strong></div>
+        <div>Kebutuhan: <strong>${wValue} Orang</strong></div>${tapHint}
       `, {
         sticky: true,
         className: 'custom-tooltip'
@@ -272,7 +279,17 @@ const MapVisualizer: React.FC<MapVisualizerProps> = ({ statsData, theme, onRegio
         layer.on({
           click: () => {
             const original = statsData.find(s => normalizeRegionName(s.name) === lookupKey);
-            if (original) onRegionClick(original.name);
+            if (original) {
+              if (isTouchDevice) {
+                if (lastTappedRegion.current === lookupKey) {
+                  onRegionClick(original.name);
+                } else {
+                  lastTappedRegion.current = lookupKey;
+                }
+              } else {
+                onRegionClick(original.name);
+              }
+            }
           }
         });
       }
@@ -292,7 +309,8 @@ const MapVisualizer: React.FC<MapVisualizerProps> = ({ statsData, theme, onRegio
       }
     }
 
-    layer.bindTooltip(`<strong>${displayTitle}</strong><br/>Kebutuhan: ${value} Orang`, {
+    const tapHint = isTouchDevice ? `<br/><span style="font-size:0.75rem; color:#94a3b8; display:block; margin-top:4px;">(Tap 2x untuk rincian)</span>` : '';
+    layer.bindTooltip(`<strong>${displayTitle}</strong><br/>Kebutuhan: ${value} Orang${tapHint}`, {
       sticky: true,
       className: 'custom-tooltip'
     });
@@ -314,12 +332,20 @@ const MapVisualizer: React.FC<MapVisualizerProps> = ({ statsData, theme, onRegio
         click: () => {
           const original = statsData.find(s => normalizeRegionName(s.name) === norm);
           if (original) {
-            onRegionClick(original.name);
+            if (isTouchDevice) {
+              if (lastTappedRegion.current === norm) {
+                onRegionClick(original.name);
+              } else {
+                lastTappedRegion.current = norm;
+              }
+            } else {
+              onRegionClick(original.name);
+            }
           }
         }
       });
     }
-  }, [statsMap.map, statsData, onRegionClick, style]);
+  }, [statsMap.map, statsData, onRegionClick, style, isTouchDevice]);
 
   const activeGeoData = (activeFilterPengadaan === 'PPPK Teknis' && wilayahGeoData) ? wilayahGeoData : geoData;
 

@@ -441,7 +441,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999;
   animation: fadeIn 0.3s ease-out;
 }
 
@@ -1184,4 +1184,65 @@ body {
   .desktop-only {
     display: none !important;
   }
+}
+
+/* Active Filters UI */
+.active-filters-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--bg-surface-lighter);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.active-filters-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.active-filters-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+.active-filters-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.filter-label {
+  color: var(--text-muted);
+  margin-right: 0.3rem;
+}
+
+.filter-value {
+  font-weight: 500;
+  color: var(--text-accent);
+}
+
+/* Primary Button for Modal */
+.primary-btn {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.primary-btn:hover {
+  background: var(--primary-hover) !important;
+  transform: translateY(-1px);
 }
